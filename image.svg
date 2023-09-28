@@ -8,6 +8,7 @@
             height: 196px;
             border: solid 2px #000000;
             font-size: 16px;
+            line-height: 18px;
             overflow: hidden;">
       <style>
         p {
