@@ -18,6 +18,19 @@
 
 <h1>SVG to PNG</h1>
 
+<div>
+    <label><input id="color" type="checkbox"> Global CSS</label>
+    <script>
+      (() => {
+        const checkbox = document.getElementById("color");
+        const body = document.querySelector("body");
+        checkbox.addEventListener("change", () => {
+          body.style.color = checkbox.checked ? "red" : null;
+        });
+      })();
+    </script>
+</div>
+
 <section>
     <h2>&lt;svg&gt;</h2>
     <svg id="inline" xmlns="http://www.w3.org/2000/svg"
@@ -52,14 +65,14 @@
             </div>
         </foreignObject>
     </svg>
-    <p><input id="inline-slider" type="range" min="0" max="100"/></p>
+    <p><label><input id="inline-slider" type="range" min="0" max="100"> SVG DOM</label></p>
     <script>
       (() => {
         const svg = document.getElementById("inline");
         const slider = document.getElementById("inline-slider");
         const square = svg.querySelector("div");
         slider.value = slider.max = parseInt(square.style.height, 10);
-        slider.addEventListener("input", (event) => {
+        slider.addEventListener("input", () => {
           square.style.height = `${slider.value}px`
         });
       })();
@@ -69,15 +82,15 @@
 <section>
     <h2>&lt;object data="image.svg"&gt;</h2>
     <object id="object-url" data="image.svg" type="image/svg+xml"></object>
-    <p><input id="object-url-slider" type="range" min="0" max="200"/></p>
+    <p><label><input id="object-url-slider" type="range" min="0" max="100"> SVG DOM</label></p>
     <script>
       (() => {
         const object = document.getElementById("object-url");
         const slider = document.getElementById("object-url-slider");
-        object.addEventListener("load", (event) => {
+        object.addEventListener("load", () => {
           const square = object.contentDocument.querySelector("div");
           slider.value = slider.max = parseInt(square.style.height, 10);
-          slider.addEventListener("input", (event) => {
+          slider.addEventListener("input", () => {
             square.style.height = `${slider.value}px`
           });
         });
