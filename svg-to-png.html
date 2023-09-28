@@ -12,11 +12,21 @@
             vertical-align: top;
             margin-right: 20px;
         }
+
+        #dpi {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 1in;
+            height: 1in;
+        }
     </style>
 </head>
 <body>
 
 <h1>SVG to PNG</h1>
+
+<div id="dpi"></div>
 
 <div>
     <label><input id="color" type="checkbox"> Global CSS</label>
@@ -29,9 +39,49 @@
         });
       })();
 
-      function saveAsPng(imageElement) {
-        // TODO
-        console.log(imageElement);
+      function saveAsPng(element) {
+        console.log(element);
+
+        let imageElement;
+        if (element instanceof HTMLImageElement) {
+          imageElement = element;
+        } else {
+          // TODO
+          throw Error("Unsupported element " + element.constructor.name)
+        }
+
+        const canvas = renderToCanvas(imageElement);
+        const dataUrl = canvas.toDataURL('image/png');
+        triggerDownload(dataUrl, "image.png")
+      }
+
+      function renderToCanvas(imageElement, dpi = 300) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // calculate the dimensions for the canvas to achieve target DPI
+        const scaleFactor = dpi / screenDpi();
+        canvas.width = imageElement.clientWidth * scaleFactor;
+        canvas.height = imageElement.clientHeight * scaleFactor;
+        canvas.style.width = `${imageElement.clientWidth}px`;
+        canvas.style.height = `${imageElement.clientHeight}px`;
+
+        // scale the original image to the canvas DPI
+        ctx.scale(scaleFactor, scaleFactor);
+
+        ctx.drawImage(imageElement, 0, 0);
+        return canvas;
+      }
+
+      function screenDpi() {
+        return document.getElementById("dpi").offsetHeight; // typically 96
+      }
+
+      function triggerDownload(dataUrl, filename) {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = filename;
+        link.click();
       }
     </script>
 </div>
