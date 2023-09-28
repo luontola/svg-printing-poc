@@ -8,7 +8,9 @@
         }
 
         section {
-            float: left;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -18,7 +20,7 @@
 
 <section>
     <h2>&lt;svg&gt;</h2>
-    <svg id="embedded" xmlns="http://www.w3.org/2000/svg"
+    <svg id="inline" xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 300 300" x="0" y="0" height="300" width="300">
         <circle r="142" cx="150" cy="150" fill="none" stroke="#000000" stroke-width="2"/>
         <foreignObject x="50" y="50" width="200" height="200">
@@ -50,11 +52,37 @@
             </div>
         </foreignObject>
     </svg>
+    <p><input id="inline-slider" type="range" min="0" max="100"/></p>
+    <script>
+      (() => {
+        const svg = document.getElementById("inline");
+        const slider = document.getElementById("inline-slider");
+        const square = svg.querySelector("div");
+        slider.value = slider.max = parseInt(square.style.height, 10);
+        slider.addEventListener("input", (event) => {
+          square.style.height = `${slider.value}px`
+        });
+      })();
+    </script>
 </section>
 
 <section>
     <h2>&lt;object data="image.svg"&gt;</h2>
     <object id="object-url" data="image.svg" type="image/svg+xml"></object>
+    <p><input id="object-url-slider" type="range" min="0" max="200"/></p>
+    <script>
+      (() => {
+        const object = document.getElementById("object-url");
+        const slider = document.getElementById("object-url-slider");
+        object.addEventListener("load", (event) => {
+          const square = object.contentDocument.querySelector("div");
+          slider.value = slider.max = parseInt(square.style.height, 10);
+          slider.addEventListener("input", (event) => {
+            square.style.height = `${slider.value}px`
+          });
+        });
+      })();
+    </script>
 </section>
 
 <section>
