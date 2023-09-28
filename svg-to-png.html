@@ -17,8 +17,8 @@
 <h1>SVG to PNG</h1>
 
 <section>
-    <h2>embedded svg</h2>
-    <svg xmlns="http://www.w3.org/2000/svg"
+    <h2>&lt;svg&gt;</h2>
+    <svg id="embedded" xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 300 300" x="0" y="0" height="300" width="300">
         <circle r="142" cx="150" cy="150" fill="none" stroke="#000000" stroke-width="2"/>
         <foreignObject x="50" y="50" width="200" height="200">
@@ -53,13 +53,18 @@
 </section>
 
 <section>
-    <h2>img tag, external svg</h2>
-    <img id="external-svg" alt="" src="image.svg"/>
+    <h2>&lt;object data="image.svg"&gt;</h2>
+    <object id="object-url" data="image.svg" type="image/svg+xml"></object>
 </section>
 
 <section>
-    <h2>img tag, data url</h2>
-    <img id="data-url-svg" alt=""
+    <h2>&lt;img src="image.svg"&gt;</h2>
+    <img id="img-url" alt="" src="image.svg"/>
+</section>
+
+<section>
+    <h2>&lt;img src="data:image/svg+xml"&gt;</h2>
+    <img id="img-data" alt=""
          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgICAgdmlld0JveD0iMCAwIDMwMCAzMDAiIHg9IjAiIHk9IjAiIGhlaWdodD0iMzAwIiB3aWR0aD0iMzAwIj4KICA8Y2lyY2xlIHI9IjE0MiIgY3g9IjE1MCIgY3k9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Zm9yZWlnbk9iamVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj4KICAgIDxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiCiAgICAgICAgIHN0eWxlPSIKICAgICAgICAgICAgd2lkdGg6IDE5NnB4OwogICAgICAgICAgICBoZWlnaHQ6IDE5NnB4OwogICAgICAgICAgICBib3JkZXI6IHNvbGlkIDJweCAjMDAwMDAwOwogICAgICAgICAgICBmb250LXNpemU6IDE2cHg7CiAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxOHB4OwogICAgICAgICAgICBvdmVyZmxvdzogaGlkZGVuOyI+CiAgICAgIDxzdHlsZT4KICAgICAgICBwIHsKICAgICAgICBtYXJnaW46IDA7CiAgICAgICAgcGFkZGluZzogMDsKICAgICAgICB9CiAgICAgIDwvc3R5bGU+CiAgICAgIDxwPnRoaXMgaXMgaHRtbCBpbiBzdmcgMTwvcD4KICAgICAgPHA+dGhpcyBpcyBodG1sIGluIHN2ZyAyPC9wPgogICAgICA8cD5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgY29uc2VjdGV0dXIgYWRpcGlzY2luZyBlbGl0LiBVdCBwcmV0aXVtIGxpYmVybyBpcHN1bSwgYSBzb2RhbGVzIHF1YW0KICAgICAgICB2dWxwdXRhdGUgZWdldC4gRG9uZWMgaWQgbG9yZW0gYXQgZXJvcyBtYXhpbXVzIHNlbXBlci4gUXVpc3F1ZSBxdWlzIGNvbmd1ZSBwdXJ1cy4gU3VzcGVuZGlzc2UgZXN0CiAgICAgICAgbmlzbCwgY29uZ3VlIHNlZCBzYXBpZW4gZWdldCwgdmVoaWN1bGEgc2NlbGVyaXNxdWUgc2FwaWVuLiBNYXVyaXMgbmVjIGlwc3VtIHNlZCBsYWN1cyBoZW5kcmVyaXQKICAgICAgICBhdWN0b3IuIE1vcmJpIHZpdmVycmEgbW9sbGlzIGp1c3RvLCBzaXQgYW1ldCBjb25ndWUgbmliaCBtYWxlc3VhZGEgYXQuIFZpdmFtdXMgZXQgbmlzaSB2ZWwgbWFnbmEKICAgICAgICBtb2xlc3RpZSB2ZXN0aWJ1bHVtIHNvbGxpY2l0dWRpbiBhYyBudWxsYS4gUXVpc3F1ZSBlZ2V0IG1pIGVsZW1lbnR1bSBhbnRlIGVsZW1lbnR1bSBpbnRlcmR1bSBhYyBub24KICAgICAgICBzZW0uIE1hZWNlbmFzIHNlZCBlcmF0IGVnZXQgZXggaW1wZXJkaWV0IG1hdHRpcyB2aXRhZSBhdCBsaWd1bGEuIEludGVnZXIgcXVhbSB0b3J0b3IsIGxhb3JlZXQgdmVsCiAgICAgICAgdGluY2lkdW50IGFjLCBpbXBlcmRpZXQgYWMgZXJhdC4gU2VkIHNhZ2l0dGlzIGF1Z3VlIGZhY2lsaXNpcyBiaWJlbmR1bSBkYXBpYnVzLiBJbnRlZ2VyIHV0IG9ybmFyZQogICAgICAgIGRvbG9yLgogICAgICA8L3A+CiAgICA8L2Rpdj4KICA8L2ZvcmVpZ25PYmplY3Q+Cjwvc3ZnPgo=">
 </section>
 
