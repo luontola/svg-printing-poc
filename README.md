@@ -1,10 +1,12 @@
 # SVG Proof of Concept
 
-Demonstrates the various ways to include SVG on an HTML page and how they affect
+Demonstrates putting SVG on a web page:
 
-1. converting SVG to PNG,
-2. manipulating SVG DOM, and
-3. the effect of global CSS on the SVG.
+1. various ways to put SVG in HTML
+2. text wrapping by putting HTML in SVG
+3. converting SVG to PNG
+4. manipulating SVG DOM
+5. sensitivity to global CSS
 
 ## Using
 
