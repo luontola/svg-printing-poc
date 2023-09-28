@@ -47,13 +47,9 @@
           imageElement = element;
         } else if (element instanceof SVGSVGElement) {
           imageElement = await svgToImage(element);
-          // the image must be in the DOM while it's being rendered to canvas
-          document.body.appendChild(imageElement);
-          setTimeout(() => {
-            document.body.removeChild(imageElement);
-          }, 0)
+        } else if (element instanceof HTMLObjectElement) {
+          imageElement = await svgToImage(element.contentDocument.documentElement);
         } else {
-          // TODO
           throw Error("Unsupported element " + element.constructor.name)
         }
 
@@ -77,15 +73,26 @@
       }
 
       function renderToCanvas(imageElement, dpi = 300) {
+        const connected = imageElement.isConnected;
+        if (!connected) {
+          // the image must be in the DOM, or its width and height will be zero
+          document.body.appendChild(imageElement);
+        }
+        const imageWidth = imageElement.clientWidth;
+        const imageHeight = imageElement.clientHeight;
+        if (!connected) {
+          document.body.removeChild(imageElement);
+        }
+
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
         // calculate the dimensions for the canvas to achieve target DPI
         const scaleFactor = dpi / screenDpi();
-        canvas.width = imageElement.clientWidth * scaleFactor;
-        canvas.height = imageElement.clientHeight * scaleFactor;
-        canvas.style.width = `${imageElement.clientWidth}px`;
-        canvas.style.height = `${imageElement.clientHeight}px`;
+        canvas.width = imageWidth * scaleFactor;
+        canvas.height = imageHeight * scaleFactor;
+        canvas.style.width = `${imageWidth}px`;
+        canvas.style.height = `${imageHeight}px`;
 
         // scale the original image to the canvas DPI
         ctx.scale(scaleFactor, scaleFactor);
