@@ -1,0 +1,31 @@
+ <svg id="elementToCapture"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 300 300"
+      x="0" y="0" height="300" width="300"
+    >
+
+      <circle
+        r="142" cx="150" cy="150"
+        fill="none" stroke="#000000" stroke-width="2"
+      />
+
+      <foreignObject
+        x="50" y="50" width="200" height="200"
+      >
+      <style> * { margin: 0; padding: 0; } </style>
+        <div
+          xmlns="http://www.w3.org/1999/xhtml"
+          style="
+            width: 196px; height: 196px;
+            border: solid 2px #000000;
+            font-size: 16px;
+            overflow: hidden;
+          "
+        >
+          <p>this is html in svg 1</p>
+          <p>this is html in svg 2</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium libero ipsum, a sodales quam vulputate eget. Donec id lorem at eros maximus semper. Quisque quis congue purus. Suspendisse est nisl, congue sed sapien eget, vehicula scelerisque sapien. Mauris nec ipsum sed lacus hendrerit auctor. Morbi viverra mollis justo, sit amet congue nibh malesuada at. Vivamus et nisi vel magna molestie vestibulum sollicitudin ac nulla. Quisque eget mi elementum ante elementum interdum ac non sem. Maecenas sed erat eget ex imperdiet mattis vitae at ligula. Integer quam tortor, laoreet vel tincidunt ac, imperdiet ac erat. Sed sagittis augue facilisis bibendum dapibus. Integer ut ornare dolor.</p>
+        </div>
+      </foreignObject>
+
+    </svg>
