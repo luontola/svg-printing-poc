@@ -39,12 +39,19 @@
         });
       })();
 
-      function saveAsPng(element) {
+      async function saveAsPng(element) {
         console.log(element);
 
         let imageElement;
         if (element instanceof HTMLImageElement) {
           imageElement = element;
+        } else if (element instanceof SVGSVGElement) {
+          imageElement = await svgToImage(element);
+          // the image must be in the DOM while it's being rendered to canvas
+          document.body.appendChild(imageElement);
+          setTimeout(() => {
+            document.body.removeChild(imageElement);
+          }, 0)
         } else {
           // TODO
           throw Error("Unsupported element " + element.constructor.name)
@@ -53,6 +60,20 @@
         const canvas = renderToCanvas(imageElement);
         const dataUrl = canvas.toDataURL('image/png');
         triggerDownload(dataUrl, "image.png")
+      }
+
+      function svgToImage(svgElement) {
+        const svg = new XMLSerializer().serializeToString(svgElement);
+        return new Promise((resolve, reject) => {
+          const image = new Image();
+          image.onload = () => {
+            resolve(image);
+          };
+          image.onerror = () => {
+            reject(new Error("svgToImage failed"));
+          }
+          image.src = 'data:image/svg+xml;base64,' + btoa(svg);
+        });
       }
 
       function renderToCanvas(imageElement, dpi = 300) {
