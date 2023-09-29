@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="5cm" height="1cm">
+  <line x1="0cm" y1="0.5cm" x2="5cm" y2="0.5cm" stroke="black"/>
+  <line x1="0cm" y1="0cm" x2="0cm" y2="1cm" stroke="black"/>
+  <line x1="1cm" y1="0cm" x2="1cm" y2="1cm" stroke="black"/>
+  <line x1="2cm" y1="0cm" x2="2cm" y2="1cm" stroke="black"/>
+  <line x1="3cm" y1="0cm" x2="3cm" y2="1cm" stroke="black"/>
+  <line x1="4cm" y1="0cm" x2="4cm" y2="1cm" stroke="black"/>
+  <line x1="5cm" y1="0cm" x2="5cm" y2="1cm" stroke="black"/>
+</svg>
