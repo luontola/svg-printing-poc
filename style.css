@@ -1,0 +1,38 @@
+*, *::before, *::after {
+    /* minimal CSS reset, https://www.joshwcomeau.com/css/custom-css-reset/ */
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+}
+
+section {
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+}
+
+#dpi {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 1in;
+    height: 1in;
+}
+
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #dpi {
+        /* workaround to printing in Chrome not obeying the @page size  */
+        left: 0;
+    }
+}
