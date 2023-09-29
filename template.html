@@ -51,12 +51,13 @@
 
 <section>
     <h2>&lt;object data="image.svg"&gt;</h2>
-    <object id="object-url" data="image.svg" type="image/svg+xml"></object>
+    <object id="object-url" data="image.svg" type="image/svg+xml" style="width: 300px; height: 300px;"></object>
     <p>
         <button id="object-url-save">Save as PNG</button>
     </p>
     <p><label><input id="object-url-slider" type="range" min="0" max="100"> SVG DOM</label></p>
-    <p>⚠️ Firefox prints this at half the size. Other images are OK.</p>
+    <p>⚠️ Firefox prints this at half the size, unless we give the &lt;object&gt; element explicit dimensions.
+        Other images are OK.</p>
     <script type="module">
       import {saveAsPng} from "./svg-to-png.js"
 
