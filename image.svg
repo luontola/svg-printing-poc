@@ -13,7 +13,7 @@
             line-height: 18px;
             box-sizing: unset;">
       <style>
-        p {
+        svg p {
         margin: 0;
         padding: 0;
         }
