@@ -8,8 +8,10 @@
             height: 196px;
             border: solid 2px #000000;
             font-size: 16px;
+            overflow: hidden;
+            /* reset global CSS */
             line-height: 18px;
-            overflow: hidden;">
+            box-sizing: unset;">
       <style>
         p {
         margin: 0;
