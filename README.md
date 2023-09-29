@@ -10,5 +10,5 @@ Demonstrates putting SVG on a web page:
 
 ## Using
 
-    ./dev-server.sh
+    python server.py
     open http://localhost:8080/svg-to-png.html
