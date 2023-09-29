@@ -10,7 +10,7 @@
             font-size: 16px;
             overflow: hidden;
             /* reset global CSS */
-            line-height: 18px;
+            line-height: 1.2;
             box-sizing: unset;">
       <style>
         svg p {
