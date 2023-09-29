@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>SVG to PNG</title>
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
-        }
-
-        @page {
-            size: A4 portrait;
-            margin: 0;
-            padding: 0;
         }
 
         body {
@@ -29,6 +24,22 @@
             left: -100%;
             width: 1in;
             height: 1in;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            #dpi {
+                /* workaround to printing in Chrome not obeying the @page size  */
+                left: 0;
+            }
         }
     </style>
 </head>
@@ -248,10 +259,8 @@
     </script>
 </section>
 
-<div>
+<div style="page-break-inside: avoid">
     <h2>5 cm</h2>
-    <p>Chrome prints 5 cm as 3.34 cm</p>
-    <p>Firefox prints 5 cm as 5.01 cm</p>
 
     <h3>&lt;svg&gt;</h3>
     <svg xmlns="http://www.w3.org/2000/svg"
@@ -271,13 +280,47 @@
     <h3>&lt;div&gt;</h3>
     <div style="
             width: 5cm;
-            height: 1cm;
-            border-top: 1px solid black;">
-        <div style="float: left; width: 1cm; height: 1cm; border-left: 1px solid black;"></div>
-        <div style="float: left; width: 1cm; height: 1cm; border-left: 1px solid black;"></div>
-        <div style="float: left; width: 1cm; height: 1cm; border-left: 1px solid black;"></div>
-        <div style="float: left; width: 1cm; height: 1cm; border-left: 1px solid black;"></div>
-        <div style="float: left; width: 1cm; height: 1cm; border-left: 1px solid black; border-right: 1px solid black"></div>
+            height: 0.5cm;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black">
+        <div></div>
+        <div style="border-left: 1px solid black;"></div>
+        <div style="border-left: 1px solid black;"></div>
+        <div style="border-left: 1px solid black;"></div>
+        <div style="border-left: 1px solid black;"></div>
+    </div>
+
+    <!--
+    <h2>220mm</h2>
+    <p>⚠️ Chrome scales the page if it contains anything wider than @page size.</p>
+    <div style="
+            width: 220mm;
+            height: 2mm;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;">
+    </div>
+    -->
+
+    <h2>210mm A4</h2>
+    <div style="
+            width: 210mm;
+            height: 2mm;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;">
+    </div>
+
+    <h2>200mm</h2>
+    <div style="
+            width: 200mm;
+            height: 2mm;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;">
     </div>
 </div>
 
