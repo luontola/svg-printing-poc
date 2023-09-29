@@ -141,17 +141,27 @@
         <div style="border-left: 1px solid black;"></div>
     </div>
 
-    <!--
     <h2>220mm</h2>
-    <p>⚠️ Chrome scales the page if it contains anything wider than @page size.</p>
-    <div style="
+    <p>⚠️ Chrome scales the page if it contains anything wider than @page size (i.e. 210mm).
+        <button id="display-220mm">Display</button>
+    </p>
+    <div id="220mm" style="
+            display: none;
             width: 220mm;
             height: 2mm;
             border-top: 1px solid black;
             border-left: 1px solid black;
             border-right: 1px solid black;">
     </div>
-    -->
+    <script type="module">
+      const element = document.getElementById("220mm");
+      const button = document.getElementById("display-220mm");
+
+      button.addEventListener("click", () => {
+        element.style.display = null
+        button.remove();
+      });
+    </script>
 
     <h2>210mm A4</h2>
     <div style="
